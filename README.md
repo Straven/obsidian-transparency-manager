@@ -22,11 +22,11 @@ An Obsidian plugin for advanced window transparency on macOS. Stable replacement
 
 1. Install [BRAT](https://obsidian.md/plugins?id=obsidian42-brat) from Community Plugins
 2. Open BRAT settings → **Add Beta Plugin**
-3. Enter: `mykolasarry/obsidian-transparency-manager`
+3. Enter: `Straven/obsidian-transparency-manager`
 
 ### Manual
 
-1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/mykolasarry/obsidian-transparency-manager/releases/latest)
+1. Download `main.js` and `manifest.json` from the [latest release](https://github.com/Straven/obsidian-transparency-manager/releases/latest)
 2. Copy both files to `<vault>/.obsidian/plugins/obsidian-transparency-manager/`
 3. Enable the plugin in **Settings → Community plugins**
 
