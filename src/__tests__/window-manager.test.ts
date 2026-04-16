@@ -1,6 +1,16 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { WindowManager } from '../window-manager'
 import type { Profile } from '../settings'
+
+// Provide a minimal document stub — not available in the Node.js test environment
+beforeEach(() => {
+  vi.stubGlobal('document', {
+    body: { classList: { toggle: vi.fn(), remove: vi.fn() } },
+  })
+})
+afterEach(() => {
+  vi.unstubAllGlobals()
+})
 
 // --- Mock BrowserWindow factory ---
 

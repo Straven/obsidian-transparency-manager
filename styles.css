@@ -1,0 +1,5 @@
+/* Applied when any vibrancy type is active — exposes the macOS blur layer */
+body.tm-vibrancy,
+body.tm-vibrancy .app-container {
+  background: transparent !important;
+}

@@ -49,6 +49,9 @@ export class WindowManager {
     this.win.setVibrancy(profile.vibrancyType as any)
     // Only set opacity when vibrancy is disabled — avoid double-dimming
     this.win.setOpacity(profile.vibrancyType ? 1.0 : profile.opacity)
+    // Toggle CSS class so body/app-container become transparent,
+    // exposing the macOS vibrancy blur layer behind the web content
+    document.body.classList.toggle('tm-vibrancy', !!profile.vibrancyType)
   }
 
   cleanup(): void {
@@ -61,6 +64,7 @@ export class WindowManager {
     this.enabled = false
     this.lastApplied = null
     this.currentProfile = null
+    document.body.classList.remove('tm-vibrancy')
   }
 
   private reapply(): void {
