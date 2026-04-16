@@ -40,7 +40,7 @@ cp main.js manifest.json ~/obsidian-test-vault/.obsidian/plugins/obsidian-transp
   `onChange` callback triggers `saveData()` + status bar refresh.
 - **src/settings-tab.ts** — live preview via `previewProfile()` (debounced 100ms in full UI).
   Reverts to snapshot on `hide()` if user didn't save. Inlines `extractThemeColor()`.
-- **src/status-bar.ts** — click cycles profiles. Right-click picker is TODO.
+- **src/status-bar.ts** — click cycles profiles, right-click shows `Menu` picker to jump directly to any profile.
 - **src/scheduler.ts** — dark mode via `matchMedia`, time-based via `setInterval` (1 min),
   wake-from-sleep via `powerMonitor` `resume` event. `isInTimeRange()` exported for testing.
 
@@ -52,14 +52,13 @@ cp main.js manifest.json ~/obsidian-test-vault/.obsidian/plugins/obsidian-transp
 - [x] `src/window-manager.ts` — complete
 - [x] `src/profile-manager.ts` — complete
 - [x] `src/scheduler.ts` — complete
-- [x] `src/status-bar.ts` — render + click cycle (right-click picker TODO)
+- [x] `src/status-bar.ts` — render + click cycle + right-click profile picker
 - [x] `src/settings-tab.ts` — full settings UI (profile list, live-preview sliders, schedule rules)
 - [x] `src/__tests__/` — test suite (vitest) — 4 files, all critical paths covered
 - [x] GitHub Actions release CI — `.github/workflows/release.yml`, triggers on `X.Y.Z` tag push
 - [x] Release tooling — `release-it` + `@release-it/conventional-changelog`, use `npm run release`
 - [x] LICENSE, README.md, CHANGELOG.md
-- [ ] Status bar right-click picker
-- [ ] README screenshots
+- [ ] README screenshots (low priority — vibrancy effect doesn't read in static PNG)
 
 ## Key Constraints
 

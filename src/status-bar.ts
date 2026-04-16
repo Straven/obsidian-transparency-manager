@@ -1,3 +1,4 @@
+import { Menu } from 'obsidian'
 import type { ProfileManager } from './profile-manager'
 
 export class StatusBar {
@@ -8,7 +9,25 @@ export class StatusBar {
   ) {
     this.render()
     this.el.addEventListener('click', () => this.cycleProfile())
-    // TODO: right-click → quick profile picker dropdown
+    this.el.addEventListener('contextmenu', (e) => this.showPicker(e))
+  }
+
+  private showPicker(e: MouseEvent): void {
+    const menu = new Menu()
+    const activeId = this.profileManager.getActiveProfile().id
+    for (const profile of this.profileManager.getProfiles()) {
+      menu.addItem(item =>
+        item
+          .setTitle(profile.name)
+          .setChecked(profile.id === activeId)
+          .onClick(() => {
+            this.profileManager.setActiveProfile(profile.id)
+            this.render()
+            this.onProfileChange()
+          })
+      )
+    }
+    menu.showAtMouseEvent(e)
   }
 
   render(): void {
