@@ -143,7 +143,11 @@ export class SettingsTab extends PluginSettingTab {
         dd.setValue(current.vibrancyType ?? '')
         dd.onChange(v => {
           this.pendingEdits.vibrancyType = v === '' ? null : v as VibrancyType
-          this.triggerPreview(profile)
+          // Apply immediately — no debounce needed for a discrete dropdown.
+          // Using triggerPreview here would race with display() and get cancelled.
+          if (this.previewTimer) { clearTimeout(this.previewTimer); this.previewTimer = null }
+          if (!this.previewSnapshot) this.previewSnapshot = this.profileManager.getActiveProfile()
+          this.windowManager.applySettings({ ...profile, ...this.pendingEdits })
           this.display()
         })
       })
@@ -186,6 +190,10 @@ export class SettingsTab extends PluginSettingTab {
         btn.setButtonText('Save').setCta().onClick(async () => {
           this.profileManager.updateProfile(profile.id, this.pendingEdits)
           await this.plugin.saveSettings()
+          // Ensure the window reflects the active profile after save.
+          // If preview worked, the dirty-check makes this a no-op.
+          // If preview failed for any reason, this is the fallback.
+          this.windowManager.applySettings(this.profileManager.getActiveProfile())
           this.previewSnapshot = null
           this.editingProfileId = null
           this.pendingEdits = {}
