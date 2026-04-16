@@ -149,18 +149,36 @@ export class SettingsTab extends PluginSettingTab {
       })
 
     if (current.vibrancyType === null) {
-      const opacitySetting = new Setting(editorEl)
+      const initPct = Math.round((current.opacity ?? 1.0) * 100)
+      let sliderEl: HTMLInputElement
+      let textEl: HTMLInputElement
+
+      new Setting(editorEl)
         .setName('Opacity')
-        .setDesc(`${Math.round((current.opacity ?? 1.0) * 100)}%`)
-      opacitySetting.addSlider(sl => {
-        sl.setLimits(10, 100, 1)
-        sl.setValue(Math.round((current.opacity ?? 1.0) * 100))
-        sl.onChange(v => {
-          this.pendingEdits.opacity = v / 100
-          opacitySetting.setDesc(`${v}%`)
-          this.triggerPreview(profile)
+        .addSlider(sl => {
+          sl.setLimits(10, 100, 1).setValue(initPct)
+          sliderEl = sl.sliderEl
+          sl.onChange(v => {
+            this.pendingEdits.opacity = v / 100
+            textEl.value = String(v)
+            this.triggerPreview(profile)
+          })
         })
-      })
+        .addText(text => {
+          text.setValue(String(initPct))
+          text.inputEl.type = 'number'
+          text.inputEl.min = '10'
+          text.inputEl.max = '100'
+          text.inputEl.style.width = '4.5rem'
+          textEl = text.inputEl
+          textEl.addEventListener('change', () => {
+            const n = Math.min(100, Math.max(10, Math.round(parseFloat(textEl.value)) || initPct))
+            textEl.value = String(n)
+            this.pendingEdits.opacity = n / 100
+            sliderEl.value = String(n)
+            this.triggerPreview(profile)
+          })
+        })
     }
 
     new Setting(editorEl)
