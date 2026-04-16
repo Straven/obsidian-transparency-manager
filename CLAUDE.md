@@ -53,12 +53,11 @@ cp main.js manifest.json ~/obsidian-test-vault/.obsidian/plugins/obsidian-transp
 - [x] `src/profile-manager.ts` — complete
 - [x] `src/scheduler.ts` — complete
 - [x] `src/status-bar.ts` — render + click cycle (right-click picker TODO)
-- [x] `src/settings-tab.ts` — stub (full UI TODO)
+- [x] `src/settings-tab.ts` — full settings UI (profile list, live-preview sliders, schedule rules)
 - [x] `src/__tests__/` — test suite (vitest) — 4 files, all critical paths covered
 - [x] GitHub Actions release CI — `.github/workflows/release.yml`, triggers on `X.Y.Z` tag push
 - [x] Release tooling — `release-it` + `@release-it/conventional-changelog`, use `npm run release`
 - [x] LICENSE, README.md, CHANGELOG.md
-- [ ] Full settings UI (profile list, live-preview sliders, schedule rules)
 - [ ] Status bar right-click picker
 - [ ] README screenshots
 

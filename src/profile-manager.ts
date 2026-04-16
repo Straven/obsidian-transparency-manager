@@ -60,6 +60,13 @@ export class ProfileManager {
     return this.createProfile(`${source.name} (copy)`, source)
   }
 
+  updateProfile(id: string, updates: Partial<Omit<Profile, 'id'>>): void {
+    const profile = this.settings.profiles.find(p => p.id === id)
+    if (!profile) return
+    Object.assign(profile, updates)
+    this.onChange()
+  }
+
   reorderProfiles(ids: string[]): void {
     const existing = new Set(this.settings.profiles.map(p => p.id))
     if (ids.length !== existing.size || ids.some(id => !existing.has(id))) {
