@@ -1,0 +1,9 @@
+{
+  "id": "obsidian-transparency-manager",
+  "name": "Transparency Manager",
+  "version": "0.0.1",
+  "minAppVersion": "1.4.0",
+  "description": "Feasibility spike",
+  "author": "mykolasarry",
+  "isDesktopOnly": true
+}

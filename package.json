@@ -1,0 +1,25 @@
+{
+  "name": "obsidian-transparency-manager",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node esbuild.config.mjs",
+    "build": "node esbuild.config.mjs production",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint src/ main.ts",
+    "release": "release-it"
+  },
+  "devDependencies": {
+    "@electron/remote": "^2.1.2",
+    "@types/node": "^22.0.0",
+    "builtin-modules": "^4.0.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "obsidian": "latest",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^4.0.0",
+    "@release-it/conventional-changelog": "^8.0.0",
+    "release-it": "^17.0.0"
+  }
+}
