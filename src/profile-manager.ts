@@ -23,7 +23,7 @@ export class ProfileManager {
     this.onChange()
   }
 
-  createProfile(name: string, base?: Partial<Profile>): Profile {
+  createProfile(name: string, base?: Partial<Pick<Profile, 'vibrancyType' | 'opacity'>>): Profile {
     const profile: Profile = {
       id: randomUUID(),
       name,
@@ -49,11 +49,6 @@ export class ProfileManager {
     this.onChange()
   }
 
-  renameProfile(id: string, name: string): void {
-    const profile = this.settings.profiles.find(p => p.id === id)
-    if (profile) { profile.name = name; this.onChange() }
-  }
-
   duplicateProfile(id: string): Profile {
     const source = this.settings.profiles.find(p => p.id === id)
     if (!source) throw new Error(`Profile ${id} not found`)
@@ -67,12 +62,4 @@ export class ProfileManager {
     this.onChange()
   }
 
-  reorderProfiles(ids: string[]): void {
-    const existing = new Set(this.settings.profiles.map(p => p.id))
-    if (ids.length !== existing.size || ids.some(id => !existing.has(id))) {
-      throw new Error('reorderProfiles: ids must match existing profile ids exactly')
-    }
-    this.settings.profiles = ids.map(id => this.settings.profiles.find(p => p.id === id)!)
-    this.onChange()
-  }
 }

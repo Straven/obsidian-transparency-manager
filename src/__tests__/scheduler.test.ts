@@ -116,7 +116,7 @@ describe('Scheduler.ruleMatches (critical)', () => {
 })
 
 describe('Scheduler.resolveRule (critical)', () => {
-  it('returns first matching rule', () => {
+  it('returns last matching rule (last-wins semantics)', () => {
     const settings = {
       ...structuredClone(DEFAULT_SETTINGS),
       scheduledRules: [
@@ -126,7 +126,7 @@ describe('Scheduler.resolveRule (critical)', () => {
     }
     const s = new Scheduler(settings, vi.fn())
     const result = s.resolveRule(MONDAY, true)
-    expect(result?.id).toBe('r1')
+    expect(result?.id).toBe('r2')
   })
 
   it('returns null when no rule matches', () => {

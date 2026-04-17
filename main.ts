@@ -18,7 +18,15 @@ export default class TransparencyManagerPlugin extends Plugin {
     await this.loadSettings()
 
     this.windowManager = new WindowManager()
-    this.profileManager = new ProfileManager(this.settings, () => this.onSettingsChange())
+    this.profileManager = new ProfileManager(this.settings, () => {
+      this.saveSettings().catch(e => console.error('Transparency Manager: failed to save settings', e))
+    })
+
+    this.statusBar = new StatusBar(
+      this.addStatusBarItem(),
+      this.profileManager,
+      () => this.windowManager.applySettings(this.profileManager.getActiveProfile()),
+    )
 
     this.app.workspace.onLayoutReady(() => {
       this.windowManager.init()
@@ -34,24 +42,10 @@ export default class TransparencyManagerPlugin extends Plugin {
 
     this.addSettingTab(new SettingsTab(this.app, this, this.windowManager, this.profileManager))
 
-    this.statusBar = new StatusBar(
-      this.addStatusBarItem(),
-      this.profileManager,
-      () => this.windowManager.applySettings(this.profileManager.getActiveProfile()),
-    )
-
     this.addCommand({
       id: 'transparency-manager:next-profile',
       name: 'Cycle to next profile',
-      callback: () => {
-        const profiles = this.profileManager.getProfiles()
-        const current = this.profileManager.getActiveProfile()
-        const idx = profiles.findIndex(p => p.id === current.id)
-        const next = profiles[(idx + 1) % profiles.length]
-        this.profileManager.setActiveProfile(next.id)
-        this.windowManager.applySettings(next)
-        this.statusBar.render()
-      },
+      callback: () => this.statusBar.cycleProfile(),
     })
 
     this.addCommand({
@@ -78,7 +72,4 @@ export default class TransparencyManagerPlugin extends Plugin {
     await this.saveData(this.settings)
   }
 
-  private onSettingsChange() {
-    this.saveSettings()
-  }
 }

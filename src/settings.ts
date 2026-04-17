@@ -23,7 +23,6 @@ export interface ScheduleRule {
 export interface Settings {
   profiles: Profile[]
   activeProfileId: string
-  perThemeProfiles: Record<string, string>  // themeId -> profileId
   scheduledRules: ScheduleRule[]
 }
 
@@ -34,7 +33,6 @@ export const DEFAULT_SETTINGS: Settings = {
     { id: 'minimal',      name: 'Minimal',       vibrancyType: null,           opacity: 0.92 },
   ],
   activeProfileId: 'default',
-  perThemeProfiles: {},
   scheduledRules: [],
 }
 
@@ -42,7 +40,6 @@ export function applyDefaults(data: Partial<Settings>): Settings {
   return {
     profiles: data.profiles?.length ? data.profiles : DEFAULT_SETTINGS.profiles,
     activeProfileId: data.activeProfileId ?? DEFAULT_SETTINGS.activeProfileId,
-    perThemeProfiles: data.perThemeProfiles ?? {},
     scheduledRules: data.scheduledRules ?? [],
   }
 }

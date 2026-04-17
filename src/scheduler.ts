@@ -50,10 +50,11 @@ export class Scheduler {
   }
 
   resolveRule(now: Date, isDark: boolean): ScheduleRule | null {
+    let matched: ScheduleRule | null = null
     for (const rule of this.settings.scheduledRules) {
-      if (this.ruleMatches(rule, now, isDark)) return rule
+      if (this.ruleMatches(rule, now, isDark)) matched = rule
     }
-    return null
+    return matched
   }
 
   ruleMatches(rule: ScheduleRule, now: Date, isDark: boolean): boolean {

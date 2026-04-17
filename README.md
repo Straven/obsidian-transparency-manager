@@ -15,6 +15,7 @@ An Obsidian plugin for advanced window transparency on macOS. Stable replacement
 
 - macOS (Windows/Linux support planned for v2)
 - Obsidian 1.4.0 or later
+- **For vibrancy**: enable **Settings → Appearance → Translucent window** in Obsidian
 
 ## Installation
 

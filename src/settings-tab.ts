@@ -137,7 +137,7 @@ export class SettingsTab extends PluginSettingTab {
 
     new Setting(editorEl)
       .setName('Vibrancy')
-      .setDesc('Visual blur effect. Set to Disabled to use opacity instead.')
+      .setDesc('Visual blur effect. Set to Disabled to use opacity instead. Requires "Translucent window" enabled in Obsidian → Settings → Appearance.')
       .addDropdown(dd => {
         for (const [val, label] of VIBRANCY_OPTIONS) dd.addOption(val, label)
         dd.setValue(current.vibrancyType ?? '')
@@ -380,17 +380,4 @@ export class SettingsTab extends PluginSettingTab {
     return `Time — ${rule.startTime ?? '?'} → ${rule.endTime ?? '?'}${days}`
   }
 
-  previewProfile(profile: Profile): void {
-    if (!this.previewSnapshot) this.previewSnapshot = this.profileManager.getActiveProfile()
-    this.windowManager.applySettings(profile)
-  }
-
-  commitPreview(): void {
-    this.previewSnapshot = null
-    this.plugin.saveSettings()
-  }
-
-  extractThemeColor(): string {
-    return getComputedStyle(document.body).getPropertyValue('--background-primary').trim()
-  }
 }

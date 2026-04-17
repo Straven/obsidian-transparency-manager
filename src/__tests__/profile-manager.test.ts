@@ -115,34 +115,6 @@ describe('ProfileManager', () => {
     })
   })
 
-  describe('reorderProfiles', () => {
-    it('reorders profiles to match provided id order', () => {
-      const settings = makeSettings()
-      const pm = new ProfileManager(settings, vi.fn())
-      const reversed = settings.profiles.map(p => p.id).reverse()
-
-      pm.reorderProfiles(reversed)
-
-      expect(settings.profiles.map(p => p.id)).toEqual(reversed)
-    })
-
-    it('rejects arrays missing an existing id', () => {
-      const settings = makeSettings()
-      const pm = new ProfileManager(settings, vi.fn())
-      const partial = settings.profiles.slice(0, 2).map(p => p.id)
-
-      expect(() => pm.reorderProfiles(partial)).toThrow()
-    })
-
-    it('rejects arrays with extra unknown ids', () => {
-      const settings = makeSettings()
-      const pm = new ProfileManager(settings, vi.fn())
-      const withExtra = [...settings.profiles.map(p => p.id), 'ghost']
-
-      expect(() => pm.reorderProfiles(withExtra)).toThrow()
-    })
-  })
-
   describe('duplicateProfile', () => {
     it('creates a copy with a different id', () => {
       const settings = makeSettings()

@@ -35,7 +35,7 @@ export class StatusBar {
     this.el.setText(`Transparency: ${name}`)
   }
 
-  private cycleProfile(): void {
+  cycleProfile(): void {
     const profiles = this.profileManager.getProfiles()
     const current = this.profileManager.getActiveProfile()
     const idx = profiles.findIndex(p => p.id === current.id)

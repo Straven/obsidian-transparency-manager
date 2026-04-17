@@ -19,7 +19,6 @@ describe('applyDefaults', () => {
     expect(result.profiles).toBeDefined()
     expect(result.activeProfileId).toBeDefined()
     expect(result.scheduledRules).toEqual([])
-    expect(result.perThemeProfiles).toEqual({})
   })
 
   it('uses default profiles when provided profiles is empty array', () => {
@@ -31,11 +30,6 @@ describe('applyDefaults', () => {
     const custom = [{ id: 'x', name: 'X', vibrancyType: null as null, opacity: 1.0 }]
     const result = applyDefaults({ profiles: custom })
     expect(result.profiles).toEqual(custom)
-  })
-
-  it('defaults perThemeProfiles to empty object', () => {
-    const result = applyDefaults({})
-    expect(result.perThemeProfiles).toEqual({})
   })
 
   it('defaults scheduledRules to empty array', () => {

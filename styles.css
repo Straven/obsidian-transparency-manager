@@ -1,5 +1,24 @@
 /* Applied when any vibrancy type is active — exposes the macOS blur layer */
 body.tm-vibrancy,
-body.tm-vibrancy .app-container {
+body.tm-vibrancy .app-container,
+body.tm-vibrancy .workspace-ribbon,
+body.tm-vibrancy .workspace-split,
+body.tm-vibrancy .workspace-tabs,
+body.tm-vibrancy .workspace-leaf,
+body.tm-vibrancy .workspace-leaf-content,
+body.tm-vibrancy .nav-files-container,
+body.tm-vibrancy .view-content,
+body.tm-vibrancy .mod-root,
+body.tm-vibrancy .mod-left-split,
+body.tm-vibrancy .mod-right-split,
+body.tm-vibrancy .titlebar,
+body.tm-vibrancy .titlebar-inner,
+body.tm-vibrancy .workspace-tab-header-container,
+body.tm-vibrancy .workspace-tab-header,
+body.tm-vibrancy .workspace-sidedock-vault-profile,
+body.tm-vibrancy .titlebar-button-container,
+body.tm-vibrancy .sidebar-toggle-button,
+body.tm-vibrancy .view-header,
+body.tm-vibrancy .status-bar {
   background: transparent !important;
 }
