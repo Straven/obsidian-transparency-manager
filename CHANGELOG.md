@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/Straven/obsidian-transparency-manager/compare/0.1.0...0.2.0) (2026-04-17)
+
+### Features
+
+* add opacity number input synced with slider ([615c176](https://github.com/Straven/obsidian-transparency-manager/commit/615c176ee42f425ccc8e6fb7232aa5389c35b2be))
+
+### Bug Fixes
+
+* apply vibrancy preview immediately, not via debounce timer ([7cc9f39](https://github.com/Straven/obsidian-transparency-manager/commit/7cc9f39be28ff4b8cc974027ac95fc2f35025a12))
+* correct GitHub username in README installation links ([3e7bb9e](https://github.com/Straven/obsidian-transparency-manager/commit/3e7bb9e19ed0a734b82d124c4a65d6bf1163a523))
+* make vibrancy visible by toggling transparent CSS class ([cc5909d](https://github.com/Straven/obsidian-transparency-manager/commit/cc5909d1de474cfb1d635ba4e0de8466b20e577e))
+
 ## 0.1.0 (2026-04-16)
 
 ### Features
